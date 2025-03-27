@@ -7,7 +7,7 @@ services:
       - 443:443
     volumes:
       - ./webhtml:/var/www/html
-      - ./config/nginx/:/etc/nginx/conf.d/
+      - ./config/nginx:/etc/nginx/conf.d
   db:
     image: mariadb
     environment:
