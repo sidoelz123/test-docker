@@ -2,9 +2,6 @@ install_docker() {
   sudo apt update -y && sudo apt upgrade -y
   curl -fsSL https://get.docker.com -o get-docker.sh
   sudo sh get-docker.sh
-  git clone
-  cd
-  docker compose up -d
   echo "install done and check your docker 'docker ps'"
 }
 
@@ -23,8 +20,12 @@ uninstall_docker() {
   echo "success uninstall docker"
 }
 
-test() {
-  echo "success message"
+run_app() {
+  docker compose up -d
+}
+
+stop_app() {
+  docker compose down
 }
 
 show_menu() {
@@ -32,8 +33,10 @@ show_menu() {
   echo "1) install docker"
   echo "2) install lazydocker"
   echo "3) uninstall docker"
-  echo "4) keluar"
-  read -p "Masukkan pilihan (1/2/3/4): " choice
+  echo "4) start webserver"
+  echo "5) stop webserver"
+  echo "6) keluar script"
+  read -p "Masukkan pilihan : " choice
 
   case $choice in
   1)
@@ -46,6 +49,12 @@ show_menu() {
     uninstall_docker
     ;;
   4)
+    run_app
+    ;;
+  5)
+    stop_app
+    ;;
+  6)
     echo "Keluar dari script."
     exit 0
     ;;
