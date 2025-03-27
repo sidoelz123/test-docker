@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./webhtml:/var/www/html
+      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: adminroot
+      MYSQL_DATABASE: admindata
+    volumes:
+      - database:/var/lib/mysql
+volumes:
+  database:
